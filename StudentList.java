@@ -92,18 +92,13 @@ public class StudentList {
 
         // System.out.println(name);
 
-        int wordCount = 0;
-        for (String word : words) wordCount++; // Crude way to get size of an array but it works
-
-        for (int i = 0; i < wordCount; i++){
+        for (int i = 0; i < words.length; i++){
             // Capitalizing the words individually
             // left-inclusive, right-exclusive
-            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
+            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
         }
-        name = String.join(" ", words);
-        // System.out.println(name);
 
-        return name;
+        return String.join(" ", words);
     }
 
     public static void main(String[] args){
