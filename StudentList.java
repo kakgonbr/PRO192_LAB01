@@ -95,7 +95,8 @@ public class StudentList {
         for (int i = 0; i < words.length; i++){
             // Capitalizing the words individually
             // left-inclusive, right-exclusive
-            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
+            if (!words[i].isEmpty())
+                words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
         }
 
         return String.join(" ", words);
