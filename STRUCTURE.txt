@@ -1,0 +1,9 @@
+JDK version: 17.0.10
+
+Lesson 1: .\lab01\Quadratic.java
+
+Lesson 2: .\lab01\ElectricUsage.java
+
+Lesson 3: .\lab01\Lab01
+
+Lesson 4: .\StudentList.java
