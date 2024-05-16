@@ -8,8 +8,7 @@ public class Utils {
         vInt,
         vLong,
         vFloat,
-        vDouble,
-        vDefault
+        vDouble
     }
     
     public static String getLine(String message, validations val){
@@ -21,7 +20,7 @@ public class Utils {
                     return scanner.nextLine().trim();
                 } else return "";
             case vLong:
-                if (scanner.hasNextInt()){
+                if (scanner.hasNextLong()){
                     return scanner.nextLine().trim();
                 } else return "";
             case vFloat:
@@ -35,5 +34,10 @@ public class Utils {
             default:
                 return scanner.nextLine();
         }
+    }
+    
+    public static String getLine(String message){
+        System.out.print(message);
+        return (new java.util.Scanner(System.in)).nextLine();
     }
 }
