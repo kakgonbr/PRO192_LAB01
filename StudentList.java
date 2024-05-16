@@ -87,15 +87,16 @@ public class StudentList {
     private static String normalizeName(String name){ // name is a copy of a reference to a String object in memory
         // Quite confusing because name initially points to an element in studentNames, after the line below it points to a modified copy instead
         name = name.trim(); // Remove leading and trailing whitespaces
-        name = name.replaceAll("\\s+", " "); // Remove redundant spaces, the first input needs to be "\s" (\ has to be escaped with another \), + means one or more, \s+ (after escaping) means one or more spaces
-        String[] words = name.split("[,\\s]"); // Split by space and comma (?)
+        name = name.replaceAll("[-+.,/;:\"'_=!@#$%^&*()\\[\\]]", "");
+        name = name.replaceAll("\\s+", " "); // Remove redundant spaces
+        String[] words = name.split("[\\s]"); // Split by space
 
         // System.out.println(name);
 
         for (int i = 0; i < words.length; i++){
             // Capitalizing the words individually
             // left-inclusive, right-exclusive
-            if (!words[i].isEmpty())
+            if (!words[i].isBlank())
                 words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
         }
 
