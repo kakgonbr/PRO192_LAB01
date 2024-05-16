@@ -13,12 +13,8 @@ public class StudentList {
         int arrSize = 0;
         String inp;
         
-//        do {
-//            if (!(inp = Utils.getLine("Enter number of students: ", Utils.validations.vInt)).isEmpty())
-//                arrSize = Integer.parseInt(inp);
-//        } while (arrSize <= 0);
-        
-        while ((inp = Utils.getLine("Enter number of students: ", Utils.validations.vInt)).isEmpty() || (arrSize = Integer.parseInt(inp)) <= 0);
+        while ((inp = Utils.getLine("Enter number of students: ", Utils.validations.vInt)).isEmpty() || (arrSize = Integer.parseInt(inp)) <= 0)
+            System.out.println("Enter a valid positive integer!");
                 
         studentNames = new String[arrSize];
         studentGrades = new double[arrSize];
@@ -27,7 +23,8 @@ public class StudentList {
         for (int i = 0; i < arrSize; i++){
             studentGrades[i] = ((int)(Math.random() * 37)) * 0.25 + 1; // Math.random() returns [0, 1) (0 inclusive, 1 exclusive)
             // By mulitplying [0, 1) by 37 -> [0, 37) and truncating the decimal part, we get [0, 36], multiply this by 0.25: [0, 9], offset by 1: [1, 10]
-            while ((studentNames[i] = Utils.getLine("Enter name for student #" + (i + 1) + "\n", Utils.validations.vDefault)).isBlank());
+            while ((studentNames[i] = Utils.getLine("Enter name for student #" + (i + 1) + "\n").replaceAll("[^a-zA-Z\\s]", "")).isBlank())
+                System.out.println("Student name cannot be blank or be comprised entirely of special characters and numbers!");
         }
 
         return arrSize;
@@ -87,7 +84,6 @@ public class StudentList {
     private static String normalizeName(String name){ // name is a copy of a reference to a String object in memory
         // Quite confusing because name initially points to an element in studentNames, after the line below it points to a modified copy instead
         name = name.trim(); // Remove leading and trailing whitespaces
-        name = name.replaceAll("[-+.,/;:\"'_=!@#$%^&*()\\[\\]]", "");
         name = name.replaceAll("\\s+", " "); // Remove redundant spaces
         String[] words = name.split("[\\s]"); // Split by space
 
